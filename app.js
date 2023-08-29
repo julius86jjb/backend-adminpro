@@ -4,6 +4,7 @@ var express = require('express');
 var cors = require('cors')
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+require('dotenv').config();
 // var fileUpload = require('express-fileupload');
 
 
@@ -49,10 +50,17 @@ var imagenesRoutes = require('./routes/imagenes');
 
 // Conexion DB
 
-mongoose.connection.openUri('mongodb://localhost:27017/hospitalDB', (err, res) => {
+
+try {
+    mongoose.connection.openUri('mongodb://localhost:27017/hospitalDB', (err, res) => {
     if (err) throw err;
     console.log('Base de Datos: \x1b[32m%s\x1b[0m', 'online');
-});
+    });
+} catch (error) {
+    console.log(error);
+    throw new Error('Error a la hora de iniciar la BD ver logs');
+}
+
 
 
 // Server index config - VER IMAGENES EN EL NAVEGADOR CON FS

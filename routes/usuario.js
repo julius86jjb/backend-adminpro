@@ -1,7 +1,7 @@
 // Requires
 
 var express = require('express');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const jwt = require('jsonwebtoken');
 // var SEED = require('../config/config').SEED;
