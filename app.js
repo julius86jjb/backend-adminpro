@@ -50,9 +50,22 @@ var imagenesRoutes = require('./routes/imagenes');
 
 // Conexion DB
 
+// DEV
+
+// try {
+//     mongoose.connection.openUri('mongodb://localhost:27017/hospitalDB', (err, res) => {
+//     if (err) throw err;
+//     console.log('Base de Datos: \x1b[32m%s\x1b[0m', 'online');
+//     });
+// } catch (error) {
+//     console.log(error);
+//     throw new Error('Error a la hora de iniciar la BD ver logs');
+// }
+
+// PROD
 
 try {
-    mongoose.connection.openUri('mongodb://localhost:27017/hospitalDB', (err, res) => {
+    mongoose.connection.openUri('mongodb://mongo:YRkiwWraooQGrng8Wof1@containers-us-west-111.railway.app:5465', {dbName: 'mean-db-2019'}, (err, res) => {
     if (err) throw err;
     console.log('Base de Datos: \x1b[32m%s\x1b[0m', 'online');
     });
@@ -60,8 +73,6 @@ try {
     console.log(error);
     throw new Error('Error a la hora de iniciar la BD ver logs');
 }
-
-
 
 // Server index config - VER IMAGENES EN EL NAVEGADOR CON FS
 
@@ -89,6 +100,7 @@ app.use('/', appRoutes);
 
 // Escuchar Peticiones
 
-app.listen(3000, () => {
+app.listen(process.env.PORT ?? 3000, () => {
+    
     console.log('Express Server escuchando en puerto 3000: \x1b[32m%s\x1b[0m', 'online');
 });
