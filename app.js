@@ -65,7 +65,7 @@ var imagenesRoutes = require('./routes/imagenes');
 // PROD
 
 try {
-    mongoose.connection.openUri('mongodb://mongo:YRkiwWraooQGrng8Wof1@containers-us-west-111.railway.app:5465', {dbName: 'mean-db-2019'}, (err, res) => {
+    mongoose.connection.openUri(process.env.MONGO_URI, {dbName: process.env.MONGO_DB_NAME}, (err, res) => {
     if (err) throw err;
     console.log('Base de Datos: \x1b[32m%s\x1b[0m', 'online');
     });

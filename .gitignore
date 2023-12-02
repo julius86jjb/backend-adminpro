@@ -1,3 +1,4 @@
 /node_modules
+/dist
 
 /google-signin-demo/node_modules
